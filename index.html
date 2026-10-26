@@ -45,8 +45,8 @@ a:focus-visible,button:focus-visible{outline:1.5px solid var(--accent);outline-o
 /* slide deck viewer */
 figure.deck{margin:0 0 26px;border:1px solid var(--rule);background:var(--sheet)}
 .viewer{position:relative}
-.zoom{display:block;width:100%;padding:0;border:0;background:#fff;cursor:zoom-in}
-.zoom img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:2533/1425}
+.zoom{display:block;width:100%;padding:0;border:0;background:var(--sheet);cursor:zoom-in}
+.zoom img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:2533/1425;object-fit:contain}
 .viewer .nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font:400 16px/1 var(--mono);cursor:pointer;opacity:.92;transition:opacity .2s,background .2s}
 .viewer .nav:hover{opacity:1;background:var(--ink);color:var(--paper)}
 .viewer .prev{left:12px}.viewer .next{right:12px}
@@ -58,7 +58,7 @@ figure.deck{margin:0 0 26px;border:1px solid var(--rule);background:var(--sheet)
 .thumbs button{padding:0;border:1px solid var(--rule);background:transparent;cursor:pointer;text-align:left;opacity:.6;transition:opacity .2s,border-color .2s}
 .thumbs button:hover{opacity:.9}
 .thumbs button[aria-selected="true"]{opacity:1;border-color:var(--ink)}
-.thumbs img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:2533/1425}
+.thumbs img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:2533/1425;object-fit:cover}
 .thumbs span{display:block;padding:6px 7px;font:500 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 @media (max-width:480px){.thumbs span{display:none}.thumbs{gap:5px}}
 .lightbox{position:fixed;inset:0;z-index:50;background:rgba(10,12,11,.92);display:flex;align-items:center;justify-content:center;padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));overflow:auto}
@@ -86,6 +86,16 @@ figure.deck{margin:0 0 26px;border:1px solid var(--rule);background:var(--sheet)
 .rdoc.pages{max-width:900px}
 .pgs{display:flex;flex-direction:column;gap:20px}
 .pgs img{display:block;width:100%;max-width:100%;height:auto;background:#fff;border:1px solid var(--rule);box-shadow:0 18px 40px -30px rgba(0,0,0,.35)}
+.rdoc.essay p{text-indent:0}
+.rdoc.essay ul{margin:0 0 1.1em;padding-left:1.2em}
+.rdoc.essay li{margin:0 0 .5em}
+.rdoc.essay strong{color:var(--ink);font-weight:600}
+.rdoc.essay ul.srcs{font-size:15px;line-height:1.6;overflow-wrap:anywhere}
+.rdoc.essay ul.srcs a{color:var(--accent)}
+.tbl{overflow-x:auto;margin:0 0 1.3em}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+.tbl th{font:500 11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--ink)}
+.tbl td{padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);color:var(--ink);vertical-align:top}
 /* writing */
 .paper{border-top:1px solid var(--ink);padding-top:22px}
 .paper h3{font:400 clamp(26px,3vw,32px)/1.12 var(--display);color:var(--ink);margin:0 0 8px;letter-spacing:-.01em;text-wrap:balance}
@@ -98,7 +108,7 @@ figure.deck{margin:0 0 26px;border:1px solid var(--rule);background:var(--sheet)
 .rdoc{max-width:68ch;margin:0 auto;padding-top:56px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px));padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));font:400 17px/1.75 var(--body);color:var(--text)}
 .rhead{text-align:center;padding-bottom:36px;margin-bottom:40px;border-bottom:1px solid var(--rule)}
 .rhead h1{font:400 clamp(30px,4vw,44px)/1.1 var(--display);color:var(--ink);margin:0 0 20px;text-wrap:balance}
-.rhead p{margin:0;font-size:14.5px;line-height:1.8;color:var(--muted)}
+.rdoc .rhead p{margin:0;font-size:14.5px;line-height:1.8;color:var(--muted);text-indent:0}
 .rdoc h2{font:400 28px/1.2 var(--display);color:var(--ink);margin:48px 0 14px}
 .rdoc h3{font:400 italic 21px/1.3 var(--display);color:var(--ink);margin:32px 0 10px}
 .rdoc p{margin:0 0 1.1em;text-indent:2em}
@@ -109,10 +119,13 @@ ol.refs a{color:var(--accent)}
 
 .deck.wide .zoom img,.deck.wide .thumbs img{aspect-ratio:8/5}
 .thumbs.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.thumbs.two{grid-template-columns:repeat(5,minmax(0,1fr))}
 ul.tech{list-style:none;margin:-8px 0 22px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 ul.tech li{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);padding:6px 9px}
 .pai a.ext{display:inline-block;margin-left:6px;color:var(--accent);font-weight:500;text-decoration:none;border-bottom:1px solid currentColor}
 .pai a.ext:hover{color:var(--ink)}
+.pai dd p{margin:0 0 10px}
+.pai dd p:last-child{margin-bottom:0}
 /* projects */
 .case{border-top:1px solid var(--ink);padding-top:22px}
 .case + .case{margin-top:64px}
@@ -373,7 +386,7 @@ footer{padding-block:28px 40px;display:flex;justify-content:space-between;gap:12
             <div class="arr" aria-hidden="true">→</div>
             <div class="step"><span class="k">Analyze</span><b>Panel regressions</b><small>Evidence for a policy white paper</small></div>
           </div>
-          <figcaption>Fig. 3 · Contract extraction pipeline</figcaption>
+          <figcaption>Contract extraction pipeline</figcaption>
         </figure>
         <dl class="pai">
           <dt>Problem</dt><dd>The research team needed structured data from more than 50,000 PPP contracts, and coding each document by hand was slow and expensive.</dd>
@@ -442,19 +455,55 @@ footer{padding-block:28px 40px;display:flex;justify-content:space-between;gap:12
           <dt>Impact</dt><dd>Recommended a two-part strategy: <strong>bonded and free-trade-zone warehousing</strong> in Mexico and U.S. border states to defer duties until the point of sale, and a <strong>dual-platform model</strong>, a premium “Temu Plus” with merchant screening and 3–5x penalties for counterfeit goods, following the Amazon and Prime, Taobao and Tmall playbook.</dd>
         </dl>
       </article>
+
+      <article class="case">
+        <div class="chead"><span class="cap">Photo Mosaic Reconstruction</span><span class="cap">Data Science · Image Processing · Algorithm Design</span></div>
+        <h3>Rebuilding a Photo from 20,000+ Image Tiles</h3>
+        <p class="sub">A Python-based photo mosaic generator that reconstructs a 1920 × 1080 image using over 20,000 tiles selected from a library of 200 source photos.</p>
+        <ul class="tech" aria-label="Technology"><li>Python</li><li>NumPy</li><li>pandas</li><li>Pillow</li><li>Image Processing</li></ul>
+        <figure class="deck" data-deck="mosaic">
+          <div class="viewer">
+            <button class="zoom" type="button" aria-label="Open image full screen"><img class="d-img" src="img/mosaic-1.jpg" alt="" width="2000" height="1120"></button>
+            <button class="nav prev" type="button" aria-label="Previous image">←</button>
+            <button class="nav next" type="button" aria-label="Next image">→</button>
+          </div>
+          <div class="deck-bar"><span class="count mono"></span><p class="dcap"></p><span class="cap hint">Click to enlarge</span></div>
+          <div class="thumbs two" role="tablist" aria-label="Images"><button type="button" role="tab" aria-selected="true"><img src="img/mosaic-1.jpg" alt="" width="2000" height="1120" loading="lazy"><span>Full mosaic</span></button><button type="button" role="tab" aria-selected="false"><img src="img/mosaic-detail.jpg" alt="" width="954" height="1220" loading="lazy"><span>Tile detail</span></button></div>
+        </figure>
+        <dl class="pai">
+          <dt>Problem</dt><dd>Reconstruct a high-resolution photograph entirely from smaller images while preserving its overall visual appearance and minimizing repetitive tile patterns.</dd>
+          <dt>Approach</dt><dd><p>Developed a color-matching algorithm that divides the original image into approximately 20,000 regions, computes each region’s average RGB values, and selects the closest-matching images from a 200-photo library using Euclidean distance.</p><p>Enhanced the baseline algorithm with luminance-weighted RGB matching (0.299 R, 0.587 G, 0.114 B) to account for differences in human brightness perception, alongside randomized candidate sampling to reduce visible repetition across the mosaic.</p><p>Used Python, NumPy, pandas, and Pillow to process image data, compute color similarities, and assemble the final mosaic.</p></dd>
+          <dt>Impact</dt><dd>Successfully reconstructed a 1920 × 1080 photograph using <strong>20,437</strong> image tiles, demonstrating how color-distance algorithms and image-processing techniques can transform a limited image library into a detailed visual composition.</dd>
+        </dl>
+      </article>
     </section>
 
     <section class="part" id="writing">
       <div class="ph"><h2>Writing</h2></div>
+      <article class="paper">
+        <h3>The Rise of Private Credit</h3>
+        <p class="sub">Four trends reshaping a $1.5 trillion market: thinner spreads, a tested retail liquidity promise, stress that compresses returns rather than starting runs, and consolidation around the largest platforms. Based on Hepp (2026).</p>
+        <button class="read" type="button" id="open-paper3">Read the full paper →</button>
+      </article>
       <article class="paper">
         <h3>Decentralized Derivatives for Global Investors</h3>
         <p class="sub">Synthetic USD and U.S. equity exposure beyond borders: the design, economics, legal strategy and go-to-market of Apex, a stablecoin-collateralized perpetual swap protocol.</p>
         <button class="read" type="button" id="open-paper2">Read the full paper →</button>
       </article>
       <article class="paper">
+        <h3>Intel: A Strategy to Regain Market Leadership</h3>
+        <p class="sub">Why Intel lost ground to Apple, AMD and NVIDIA, and a plan to recover through outsourced production, divisional restructuring, segmented pricing, focused R&amp;D and new industry partnerships.</p>
+        <button class="read" type="button" id="open-paper4">Read the full paper →</button>
+      </article>
+      <article class="paper">
         <h3>Maximizing Efficiency in Finding a Compatible Partner</h3>
         <p class="sub">A review of how education, health and income shape partner search, read through matching models, search costs and the causation-versus-correlation problem.</p>
         <button class="read" type="button" id="open-paper">Read the full paper →</button>
+      </article>
+      <article class="paper">
+        <h3>Communication Essentials for Financial Planners</h3>
+        <p class="sub">A reflection on Grable and Goetz’s book: why listening, self-awareness and empathy matter as much as the numbers in financial planning.</p>
+        <button class="read" type="button" id="open-paper5">Read the full paper →</button>
       </article>
 
     </section>
@@ -464,8 +513,107 @@ footer{padding-block:28px 40px;display:flex;justify-content:space-between;gap:12
       <div class="cvdoc"><img src="img/cv.jpg" alt="William Wang résumé: education at Chicago Booth and UIUC, experience at Bioinformagics, Twilio, OCBridge, KWS Cereals and BCG, research at Cornell, and skills" width="2000" height="2589" loading="lazy"></div>
     </div>
 
+    <div class="reader" id="reader3" role="dialog" aria-modal="true" aria-labelledby="reader3-title" hidden>
+      <div class="rbar"><button class="rbtn" type="button" id="close-paper3">← Back</button><span class="cap">Writing</span></div>
+      <div class="rdoc essay">
+        <header class="rhead">
+          <h1 id="reader3-title">The Rise of Private Credit</h1>
+          <p>William Wang<br>October 26, 2026</p>
+        </header>
+<h2>From niche to $1.5 trillion</h2>
+<p>US private credit has grown from about $400 billion in 2010 to roughly $1.5 trillion by early 2026, and its next phase will be defined by consolidation, not collapse. Non-bank lenders now make senior, floating-rate loans to middle-market companies that banks once financed.</p>
+<p>The 2025–2026 stress episode sharpened the debate. Jamie Dimon’s “cockroach” warning in October 2025 and record redemption requests at non-traded BDCs led some to call private credit “the next 2008.” This paper argues the market is asking the wrong question: the real trends are spread compression, a fragile retail liquidity promise, and capital moving toward the largest platforms.</p>
+<h2>Who holds the market</h2>
+<p>Most private credit capital cannot leave quickly: more than 80% is contractually locked, which shapes how stress travels.</p>
+<div class="tbl"><table><thead><tr><th>Vehicle</th><th>Approx. size</th><th>Investor liquidity</th></tr></thead><tbody>
+<tr><td>Closed-end institutional funds</td><td>$1.0–1.2T</td><td>Locked for 7–10 years</td></tr>
+<tr><td>Non-traded BDCs</td><td>~$130B</td><td>Quarterly redemptions, capped and gateable</td></tr>
+<tr><td>Listed BDCs</td><td>~$80B</td><td>Permanent capital, traded on exchange</td></tr>
+<tr><td>Private BDCs</td><td>~$30B</td><td>Restricted</td></tr></tbody></table></div>
+<p>The wealth channel is the fastest-growing piece. Non-traded BDCs grew 51% in 2025, against 6% for listed BDCs, and Blackstone’s BCRED alone holds $82 billion. Private credit is no longer only an institutional asset class; it is now tied to household savings.</p>
+<h2>Trend 1: Stable yields hide a thinner cushion</h2>
+<p>Headline yields on senior private credit held near 11% through the rate-hiking cycle, but the risk premium inside them shrank by 1.3 percentage points.</p>
+<div class="tbl"><table><thead><tr><th>Senior first-lien private credit</th><th>Net yield</th><th>Risk-free rate</th><th>Spread (risk premium)</th></tr></thead><tbody>
+<tr><td>2012–2022 average</td><td>9.0%</td><td>1.4%</td><td>7.6%</td></tr>
+<tr><td>2023–2025 average</td><td>11.1%</td><td>4.8%</td><td>6.3%</td></tr>
+<tr><td>Change</td><td>+2.1 pts</td><td>+3.4 pts</td><td>−1.3 pts</td></tr></tbody></table></div>
+<p>Rising SOFR did the work, not credit compensation. Against the 2020 peak, the premium is down nearly 3 points. The 2023–2025 vintages were written in the most competitive lending market on record, so they enter the next downturn with less room for losses. New-issue pricing widened 50–75 basis points in Q1 2026, the first real repricing of the cycle, but spreads remain tight by historical standards.</p>
+<h2>Trend 2: Retail liquidity meets its first test</h2>
+<p>Quarterly redemption windows in non-traded BDCs were never true liquidity, and 2025–2026 made that visible. Credit redemptions rose from $1.7 billion in Q2 2024 to $5.7 billion in Q4 2025, a 3.3× increase in 18 months, and several large BDCs received requests above their quarterly caps.</p>
+<p>Platforms responded differently. Most gated, as their structures allow. Blue Owl ended quarterly tender offers at OBDC II. Blackstone raised BCRED’s cap from 5% to 7% and added $400 million of firm and employee capital, meeting all $3.7 billion of requests, 7.9% of NAV, without prorating.</p>
+<p>Gates are a design feature, not a failure: they stop forced loan sales at distressed prices. Net credit flows stayed positive in Q1 2026, and the next growth lever is policy. US defined-contribution plans hold about $14 trillion, and the August 2025 executive order and the Department of Labor’s March 2026 proposed safe harbor could open 401(k) access.</p>
+<h2>Trend 3: Stress shows up as lower returns, not a bank run</h2>
+<p>Private credit is an equity-funded loss-allocation system: losses flow to investors’ returns rather than through deposits and payment systems. Bank exposure is real but contained. US banks had about $95 billion committed to private credit vehicles at Q4 2024, and implied BDC fund-level leverage is roughly 0.56× debt to equity.</p>
+<p>A stress test of a BCRED-style fund makes the point. Net return to investors falls from about 9.5% in the base case to 5.5% when losses reach 2.5% of assets, and to about 0.9% in a scenario calibrated to the 2008–2010 crisis. That is return compression, not principal loss, for diversified senior portfolios.</p>
+<p>The weak points sit elsewhere:</p>
+<ul>
+<li><strong>The financing layer:</strong> fund-level leverage depends on lenders keeping facilities open, and much of it sits outside supervisory data.</li>
+<li><strong>Sector concentration:</strong> AI-related deals reached 34% of 2025 private credit volume, and many BDCs carry about 20% software exposure.</li>
+<li><strong>Insurance links:</strong> about $900 billion of US insurance liabilities now sit with private-equity-backed insurers.</li>
+<li><strong>Smaller lenders:</strong> concentrated portfolios and thin bank relationships leave less room to refinance. Borrowers under $10 million of EBITDA had covenant default rates above 30% at year-end 2025, against about 1.4% for those above $100 million.</li>
+</ul>
+<h2>Trend 4: Consolidation around the largest platforms</h2>
+<p>The most important result of the next credit cycle may be concentration rather than losses. The top five managers already control about 60% of private credit assets, and new entrants are established players such as private equity firms and bank joint ventures, not small boutiques.</p>
+<p>Scale matters more in credit than in equity. Upside on a loan is capped while downside can reach full loss, so diversification works by cutting left-tail risk: one 200-loan platform protects investors better than five 30-loan specialists. Large firms such as Apollo, Ares, Blackstone and KKR also combine insurance capital, wealth distribution and multi-bank financing, which lets them absorb stress that would push a smaller lender out. The closer analogy is the hedge fund shakeout after 2000 and 2008, not a banking crisis.</p>
+<h2>Conclusion</h2>
+<p>Private credit does not remove credit risk; it changes where losses land and how fast they appear. The defining trends are a thinner spread cushion, a retail liquidity promise now being tested, and capital migrating to scaled, integrated platforms. The question for investors over the next five years is less whether the asset class survives and more which platforms can keep financing, distribution and investor confidence through a downturn.</p>
+<h2>Sources</h2>
+<p><strong>Primary source.</strong> This paper summarizes and draws its figures from Stefan Hepp, <em>The Plumbing Beneath Private Credit: Structure, Stress, and the Coming Consolidation of a $1.5 Trillion Market</em>, working paper, University of Chicago Booth School of Business, May 11, 2026.</p>
+<p><strong>Underlying data, as cited in Hepp (2026):</strong></p>
+<ul class="srcs">
+<li>Preqin, <em>Global Private Credit Report 2026</em> (market size).</li>
+<li>Federal Reserve Board, <a href="https://www.federalreserve.gov/econres/notes/feds-notes/private-credit-characteristics-and-risks-20240223.htm" target="_blank" rel="noopener">“Private Credit: Characteristics and Risks”</a>, FEDS Notes, February 23, 2024 (market size and manager concentration).</li>
+<li>Bank for International Settlements, <em>Quarterly Review</em>, September 2025 (market size).</li>
+<li>Robert A. Stanger &amp; Co., non-listed BDC industry report, Q3 2025; Stanger Competitive Analysis, 1Q &amp; FY2026 (non-traded BDC assets and redemptions).</li>
+<li>Blackstone Private Credit Fund (BCRED), Form 10-K FY2025 and Form 10-Q Q1 2026; GlobeSt, “Blackstone Answers Redemption Spike with Higher Tender, Fresh Capital,” March 10, 2026 (BCRED size and redemptions).</li>
+<li>Blue Owl Capital Corporation II, press release, February 19, 2026 (OBDC II tender offers).</li>
+<li>StepStone/Clearwater, senior first-lien private credit yield decomposition, 2006–2025 (spread table).</li>
+<li>PitchBook LCD, “Sea Change in Private Credit Delivers Long-Awaited Spread Widening,” March 20, 2026 (Q1 2026 repricing).</li>
+<li>Berrospide, Cai, Lewis-Hayre and Zikes, “Bank Lending to Private Credit: Size, Characteristics, and Financial Stability Implications,” FEDS Notes, May 23, 2025 (bank exposure).</li>
+<li>Cliffwater, Direct Lending Index (long-run loss rates used in the stress test).</li>
+<li>Financial Stability Board, <a href="https://www.fsb.org/uploads/P060526.pdf" target="_blank" rel="noopener"><em>Report on Vulnerabilities in Private Credit</em></a>, May 6, 2026 (AI concentration and insurer links).</li>
+<li>Lincoln International, <em>Private Market Perspectives: US Edition</em>, May 2024, and Senior Debt Index (covenant defaults by borrower size).</li>
+<li>Investment Company Institute, <em>Retirement Market Data</em>, Q4 2025; White House, Executive Order “Democratizing Access to Alternative Assets for 401(k) Investors,” August 7, 2025; U.S. Department of Labor, proposed regulation, March 30, 2026 (401(k) access).</li>
+<li>JPMorgan Chase &amp; Co., Q3 2025 earnings call, October 14, 2025 (Dimon remarks).</li>
+<li>International Monetary Fund, “The Rise and Risks of Private Credit,” <em>Global Financial Stability Report</em>, April 2024.</li>
+</ul>
+      </div>
+    </div>
+
+    <div class="reader" id="reader4" role="dialog" aria-modal="true" aria-labelledby="reader4-title" hidden>
+      <div class="rbar"><button class="rbtn" type="button" id="close-paper4">← Back</button><span class="cap">Writing</span></div>
+      <div class="rdoc pages">
+        <header class="rhead">
+          <h1 id="reader4-title">Intel: A Strategy to Regain Market Leadership</h1>
+          <p>William Wang<br>November 20, 2024</p>
+        </header>
+        <div class="pgs"><img src="img/intel-01.jpg" alt="Page 1" width="1600" height="2071" loading="lazy"><img src="img/intel-02.jpg" alt="Page 2" width="1600" height="2071" loading="lazy"><img src="img/intel-03.jpg" alt="Page 3" width="1600" height="2071" loading="lazy"><img src="img/intel-04.jpg" alt="Page 4" width="1600" height="2071" loading="lazy"><img src="img/intel-05.jpg" alt="Page 5" width="1600" height="2071" loading="lazy"><img src="img/intel-06.jpg" alt="Page 6" width="1600" height="2071" loading="lazy"><img src="img/intel-07.jpg" alt="Page 7" width="1600" height="2071" loading="lazy"><img src="img/intel-08.jpg" alt="Page 8" width="1600" height="2071" loading="lazy"><img src="img/intel-09.jpg" alt="Page 9" width="1600" height="2071" loading="lazy"><img src="img/intel-10.jpg" alt="Page 10" width="1600" height="2071" loading="lazy"><img src="img/intel-11.jpg" alt="Page 11" width="1600" height="2071" loading="lazy"><img src="img/intel-12.jpg" alt="Page 12" width="1600" height="2071" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="reader" id="reader5" role="dialog" aria-modal="true" aria-labelledby="reader5-title" hidden>
+      <div class="rbar"><button class="rbtn" type="button" id="close-paper5">← Back</button><span class="cap">Writing</span></div>
+      <div class="rdoc">
+        <header class="rhead">
+          <h1 id="reader5-title">Communication Essentials for Financial Planners</h1>
+          <p>William Wang<br>May 2024</p>
+        </header>
+<p>Effective communication in financial planning transcends the mere exchange of information; it is about building relationships, understanding client's deepest concerns, and navigating their financial journey with empathy and insight. "Communication Essentials for Financial Planners" by Grable and Goetz serves not just as a guide to mastering these skills but as a manifesto that champions the confluence of technical expertise and human connection.</p>
+<p>The book's initial chapters lay a foundation that resonates deeply with the heart of financial planning — understanding the client. The authors' insights into the art of questioning peel back the layers of surface-level financial concerns to reveal the deeply held values and beliefs that drive decision-making. This nuanced approach to communication has proven invaluable, pushing beyond the textbook to the core of clients' financial narratives. It's a lesson in the importance of every story, every detail, and how they cumulatively influence the financial planning process.</p>
+<p>Further reflection on the book reveals a powerful alignment with the introspective journey that is integral to my studies. Grable and Goetz don't just instruct on how to listen; they guide planners on how to hear. The distinction is subtle yet profound. Hearing encompasses the words left unsaid, the pauses, the hesitations — the emotional subtext that can often dictate the trajectory of a financial plan. I think this is like making an active listener as you mentioned in class. For example, I could use words that denote moods and states to keep track of my client's moods, such as irrigated, depressed, blamed, paralyzed, and so on. You can then give the customer some targeted responses based on their questions and performance. But the important thing is to really think about the customer, listen to their problems and concerns, and then give them a solution! As I navigated through client interview material and case studies in my coursework, I found myself applying these principles, endeavoring to hear more than what was communicated explicitly.</p>
+<p>Moreover, the emphasis Grable and Goetz place on self-awareness catalyzed a transformation in my professional demeanor. Recognizing my biases and values, as the book suggests, has heightened my ability to serve clients with impartiality and genuine understanding. This aligns with my thinking that self-awareness is not a milestone, but an ongoing journey that enriches every interaction with a client.</p>
+<p>Balancing qualitative insights with quantitative rigor is another theme that Grable and Goetz approach with finesse. They acknowledge that while numbers tell a story, they don't encapsulate the client's life story. Here, the book echoes the course's advocacy for a balanced approach, where spreadsheets and data are tools, not doctrines. It's a balance that I've learned to navigate, understanding that while data provides the structure of a financial plan, communication styles and techniques breathe life into it.</p>
+<p>The most profound impact of "Communication Essentials for Financial Planners" lies in its human-centric approach. I remember one week of discussion where the concept of person- centeredness came through particularly well. We should understand why the client is making these decisions, to think about why he is in so much debt, and there are many clients with complex emotions and deep-seated reasons. We should put people first, listen to them and their stories, understand their problems, and help them better financially. Grable and Goetz explore communication not as a transactional skill but as a relational one. They argue that trust and understanding form the bedrock of effective financial planning. This perspective has not only broadened my view of the planner-client relationship but has also redefined it. It has instilled in me a sense of responsibility that extends beyond fiscal advice to the realm of life coaching.</p>
+<p>The discourse by Grable and Goetz on legacy and philanthropy echoes a profound tenet of financial planning—it's not solely about the accumulation of wealth but, more significantly, about the intention behind its utilization. This principle has been a cornerstone of my studies, consistently framing financial objectives not as final destinations but as vehicles to a richer, more purposeful existence. The authors’ insights have honed my skills in guiding client dialogues about the influence of their financial choices and the enduring impact they aspire to have.</p>
+<p>Consider the motivations behind a client’s philanthropic actions; it's simplistic to view such gestures as mere tax-saving strategies. Instead, I believe these acts are often driven by a deeper commitment to rectify issues they hold personal or have witnessed, like healthcare deficiencies or educational barriers. They aim to leverage their wealth as a tool for real change, creating value that transcends monetary worth and imbues their existence with true significance.</p>
+<p>In summary, 'Communication Essentials for Financial Planners' transcends the traditional confines of a financial planning guide. It acts as a reflective surface for the values, ambitions, and insecurities that clients present at the financial planning table. The book stands as an ode to the eloquence of words, the resonating power of silence, and the profound effect of empathetic listening. It has equipped me to be an attentive listener to my clients' ambitions and needs, to meticulously address their concerns, and to nurture lasting bonds—these are the principles I am committed to upholding in my practice. As I envisage my future role as a financial planner, I recognize that clear, personal communication will be a cornerstone of my profession. We must not only listen to but also truly understand our clients' objectives and worries, respond to them promptly, and establish deep-rooted connections. This text has been instrumental in deepening my understanding of these concepts. Furthermore, it has reinforced my belief in the value of direct, face-to-face interactions with clients, as supported by classical communication theories which assert that the majority of successful communication is achieved through personal, in-person exchanges."</p>
+<h2>Reference</h2>
+<ol class="refs"><li>Grable, J. E., &amp; Goetz, J. W. (2017). <em>Communication essentials for financial planners: strategies and techniques</em>. Wiley.</li></ol>
+      </div>
+    </div>
+
     <div class="reader" id="reader2" role="dialog" aria-modal="true" aria-labelledby="reader2-title" hidden>
-      <div class="rbar"><button class="rbtn" type="button" id="close-paper2">← Back</button><span class="cap">Writing · December 2025</span></div>
+      <div class="rbar"><button class="rbtn" type="button" id="close-paper2">← Back</button><span class="cap">Writing</span></div>
       <div class="rdoc pages">
         <header class="rhead">
           <h1 id="reader2-title">Decentralized Derivatives for Global Investors</h1>
@@ -476,11 +624,11 @@ footer{padding-block:28px 40px;display:flex;justify-content:space-between;gap:12
     </div>
 
     <div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="reader-title" hidden>
-      <div class="rbar"><button class="rbtn" type="button" id="close-paper">← Back</button><span class="cap">Writing · December 2024</span></div>
+      <div class="rbar"><button class="rbtn" type="button" id="close-paper">← Back</button><span class="cap">Writing</span></div>
       <div class="rdoc">
         <header class="rhead">
           <h1 id="reader-title">Maximizing Efficiency in Finding a Compatible Partner</h1>
-          <p>William Wang<br>University of Illinois Urbana-Champaign<br>Department of Finance<br>Instructor: Dr. Becca Taylor<br>December 18, 2024</p>
+          <p>William Wang<br>University of Illinois Urbana-Champaign<br>Department of Finance<br>December 18, 2024</p>
         </header>
 <h2>Introduction</h2>
 <p>In today's resource-rich environment, individuals face a wide variety of choices and opportunities when selecting a life partner. An economic framework can provide valuable insights into how to efficiently identify a compatible mate. This research explores how key economic factors—such as income, health, and education—impact and optimize the process of finding a suitable long-term partner, with the goal of maximizing benefits and minimizing costs in the decision-making process.</p>
@@ -603,6 +751,10 @@ document.querySelectorAll('.copy[data-copy]').forEach(function(b){
       {alt:'Slide: bar charts comparing alpha and information ratio across strategies',cap:'Benchmarks: attention strategies sit between value and momentum, with Bloomberg the best attention source.'},
       {alt:'Slide: cumulative returns of attention strategies and benchmarks from 2015 to 2024',cap:'Cumulative returns: $1 in Bloomberg Top-5 grows to about $10 by 2024, ahead of the value-weighted sector.'}
     ],
+    mosaic:[
+      {alt:'Photo mosaic of two footballers in red kits rebuilt from small tile images',cap:'The finished mosaic: about 20,000 tile photos, each chosen to match the average color of its patch of the original.'},
+      {alt:'Close-up of the mosaic showing individual tile photos forming the number 7',cap:'Up close: the shirt number is made of individual tile photos, matched cell by cell on color.'}
+    ],
     temu:[
       {alt:'Slide: pie chart of cross-border digital purchase share by retailer',cap:'Market share: Temu holds about 21% of U.S. cross-border digital purchases, roughly double AliExpress at 10%.'},
       {alt:'Slide: table comparing Temu and AliExpress across six criteria',cap:'Head to head: centralized direct-to-consumer logistics versus a decentralized seller marketplace.'},
@@ -679,6 +831,30 @@ document.querySelectorAll('.copy[data-copy]').forEach(function(b){
 
 (function(){
   var r=document.getElementById('reader2'),openB=document.getElementById('open-paper2'),closeB=document.getElementById('close-paper2');
+  function open(){r.hidden=false;r.scrollTop=0;document.documentElement.style.overflow='hidden';closeB.focus()}
+  function close(){r.hidden=true;document.documentElement.style.overflow='';openB.focus()}
+  openB.addEventListener('click',open);closeB.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!r.hidden)close()});
+})();
+
+(function(){
+  var r=document.getElementById('reader3'),openB=document.getElementById('open-paper3'),closeB=document.getElementById('close-paper3');
+  function open(){r.hidden=false;r.scrollTop=0;document.documentElement.style.overflow='hidden';closeB.focus()}
+  function close(){r.hidden=true;document.documentElement.style.overflow='';openB.focus()}
+  openB.addEventListener('click',open);closeB.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!r.hidden)close()});
+})();
+
+(function(){
+  var r=document.getElementById('reader4'),openB=document.getElementById('open-paper4'),closeB=document.getElementById('close-paper4');
+  function open(){r.hidden=false;r.scrollTop=0;document.documentElement.style.overflow='hidden';closeB.focus()}
+  function close(){r.hidden=true;document.documentElement.style.overflow='';openB.focus()}
+  openB.addEventListener('click',open);closeB.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!r.hidden)close()});
+})();
+
+(function(){
+  var r=document.getElementById('reader5'),openB=document.getElementById('open-paper5'),closeB=document.getElementById('close-paper5');
   function open(){r.hidden=false;r.scrollTop=0;document.documentElement.style.overflow='hidden';closeB.focus()}
   function close(){r.hidden=true;document.documentElement.style.overflow='';openB.focus()}
   openB.addEventListener('click',open);closeB.addEventListener('click',close);
